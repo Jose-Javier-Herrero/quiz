@@ -10,5 +10,4 @@ exports.answer = function(req, res){
 	}else{
 		res.render('quizes/answer', {respuesta: 'Incorrecto'});
 	}
-	res.render('quizes/answer', {pregunta: 'Cúal es la capital de Italia'} );
 };
