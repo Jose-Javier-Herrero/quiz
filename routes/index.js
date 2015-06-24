@@ -1,9 +1,16 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
+
+//Importar los controladores
+var quizController = require('../controllers/quiz_controller.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz' });
 });
+
+//Quiz Controller routes
+router.get('/quizes/question', quizController.question);
+router.get('/quizes/answer', quizController.answer);
 
 module.exports = router;
