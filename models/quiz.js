@@ -9,6 +9,10 @@
 			respuesta:  {
 				type: DataTypes.STRING,
 				validate: {notEmpty: {msg: "-> Falta introducir la respuesta"} }
+			},
+			tema:  {
+				type: DataTypes.STRING,
+				validate: {notEmpty: {msg: "-> Falta seleccionar la temática"} }
 			}
 		}
 	);
