@@ -1,4 +1,4 @@
-var path = require('path');
+ï»¿var path = require('path');
 
 //Postgres 	DATABASE_URL = postgres://user:passwd@host:port/database
 //SQLite	DATABASE_URL = sqlite://:@:/
@@ -31,18 +31,18 @@ var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 // Exportar el objeto de modelo Quiz
 exports.Quiz = Quiz;
 
-// Cración de las tablas importadas
+// CraciÃ³n de las tablas importadas
 sequelize.sync({ force: true }).then(function() {
 	Quiz.count().then(function(count) {
-		// Si la tabla está vacia la inicializamos con una pregunta
+		// Si la tabla estÃ¡ vacia la inicializamos con una pregunta
 		if(count === 0) {
 			Quiz.create({
-				pregunta: 	'Cúal es la capital de Italia',
+				pregunta: 	'CÃºal es la capital de Italia',
 				respuesta: 	'Roma',
 				tema: 		'humanidades'
 			});
 			Quiz.create({
-				pregunta: 	'Cúal es la capital de Portugal',
+				pregunta: 	'CÃºal es la capital de Portugal',
 				respuesta: 	'Lisboa',
 				tema:		'humanidades'
 			})
