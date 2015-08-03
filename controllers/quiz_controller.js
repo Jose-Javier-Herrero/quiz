@@ -54,7 +54,7 @@ exports.new = function(req, res){
 //POST /quizes/create
 exports.create = function(req, res){
 	var quiz = models.Quiz.build( req.body.quiz );
-	quiz.save({fields: ["pregunta", "respuesta"]}.then(function(){
+	quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
 		res.redirect('/quizes');
 	});
 };
