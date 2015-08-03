@@ -1,4 +1,8 @@
 ﻿<table>
+	<form method="get" action="/quizes" >
+		<input type="text" name="search" placeholder="Texto a buscar..." />
+		<input type="submit" value="Buscar" />
+	</form>
 	<tbody>
 		<% var i=0; for(i=0; i<quizes.length; i++) { %>
 			<tr>
