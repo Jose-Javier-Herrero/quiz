@@ -32,7 +32,7 @@ var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 exports.Quiz = Quiz;
 
 // Cración de las tablas importadas
-sequelize.sync().then(function() {
+sequelize.sync({ force: true }).then(function() {
 	Quiz.count().then(function(count) {
 		// Si la tabla está vacia la inicializamos con una pregunta
 		if(count === 0) {
