@@ -13,6 +13,8 @@ router.get('/author', function(req, res) {
   res.render('author', { author: 'José Javier Herrero Javaloy' });
 });
 
+//Autoload de parametros con :quizId
+router.param('quizId', quizController.load);
 
 //Quiz Controller routes
 router.get('/quizes', quizController.index);
