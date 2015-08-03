@@ -20,7 +20,7 @@ exports.index = function(req, res) {
 	var search = '%';
 
 	if(req.query.search != null) {
-		search = '%' || req.query.search.replace(/\s+/g,"%") || '%';
+		search = '%' + req.query.search.replace(/\s+/g,"%") + '%';
 	}
 	
   	models.Quiz.findAll({where: ["pregunta like ?", search]}).then(function(quizes){

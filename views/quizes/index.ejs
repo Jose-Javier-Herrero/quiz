@@ -11,5 +11,12 @@
 				</td>
 			</tr>
 		<% } %>
+		<% if(quizes.length == 0) { %>
+			<tr>
+				<td>
+					<p>No existe ninguna pregunta para los criterios de búsqueda especificados</p>
+				</td>
+			</tr>
+		<%}%>
 	</tbody>
 </table>
