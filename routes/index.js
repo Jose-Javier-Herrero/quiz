@@ -1,4 +1,4 @@
-﻿var express = require('express');
+var express = require('express');
 var router = express.Router();
 
 //Importar los controladores
@@ -10,12 +10,13 @@ router.get('/', function(req, res) {
 });
 
 router.get('/author', function(req, res) {
-  res.render('author', { author: 'José Javier Herrero Javaloy' });
+  res.render('author', { author: 'Jos� Javier Herrero Javaloy' });
 });
 
 
 //Quiz Controller routes
-router.get('/quizes/question', quizController.question);
-router.get('/quizes/answer', quizController.answer);
+router.get('/quizes', quizController.index);
+router.get('/quizes/:quizId(\\d+)', quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 
 module.exports = router;
