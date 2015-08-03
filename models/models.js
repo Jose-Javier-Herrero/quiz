@@ -33,14 +33,14 @@ exports.Quiz = Quiz;
 
 // Cración de las tablas importadas
 sequelize.sync().then(function() {
-	Quiz.count().success(function(count) {
+	Quiz.count().then(function(count) {
 		// Si la tabla está vacia la inicializamos con una pregunta
 		if(count === 0) {
 			Quiz.create({
 				pregunta: 	'Cúal es la capital de Italia',
 				respuesta: 	'Roma'
 			})
-			.success(function(){
+			.then(function(){
 				console.log('Base de datos inicializada');
 			});
 		}
