@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var methodOverride = require('method-override');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 
@@ -21,10 +22,23 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser('Quiz 2015'));
+app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Helper dinámico
+app.use(function(req, res, next) {
+	//Guardamos el path a redirigir para todas las rutas excepto /login i /logout
+	if(!req.path.match(/\/login|\/logout/)){
+		req.session.redir = req.path;
+	}
+	//Hacer visible la session en las vistas locales
+	res.locals.session = req.session;
+    next();
+});
+
+// Definir el fichero de rutas
 app.use('/', routes);
 
 // catch 404 and forward to error handler

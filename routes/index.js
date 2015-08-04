@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Importar los controladores
+var sessionController = require('../controllers/session_controller.js');
 var quizController = require('../controllers/quiz_controller.js');
 var commentController = require('../controllers/comment_controller.js');
 
@@ -17,6 +18,11 @@ router.get('/author', function(req, res) {
 
 //Autoload de parametros con :quizId
 router.param('quizId', quizController.load);
+
+//Session controller routes
+router.get('/login', sessionController.new);
+router.post('/login', sessionController.create);
+router.get('/logout', sessionController.destroy);
 
 //Quiz Controller routes
 router.get('/quizes', 						quizController.index);
