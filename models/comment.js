@@ -5,6 +5,10 @@
 			texto:  {
 				type: DataTypes.STRING,
 				validate: {notEmpty: {msg: "-> Falta introducir el comentario"} }
+			},
+			publicado:  {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false
 			}
 		}
 	);

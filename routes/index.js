@@ -16,8 +16,9 @@ router.get('/author', function(req, res) {
   res.render('author', { author: 'José Javier Herrero Javaloy', errors: [] });
 });
 
-//Autoload de parametros con :quizId
+//Autoload 
 router.param('quizId', quizController.load);
+router.param('commentId', commentController.load);
 
 //Session controller routes
 router.get('/login', sessionController.new);
@@ -37,5 +38,6 @@ router.delete('/quizes/:quizId(\\d+)', 		sessionController.loginRequired,	quizCo
 //Comment Controller routes
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
+router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', sessionController.loginRequired, commentController.publish);
 
 module.exports = router;
