@@ -42,7 +42,7 @@ exports.Quiz = Quiz;
 exports.Comment = Comment;
 
 // Cración de las tablas importadas
-sequelize.sync({ force: true }).then(function() {
+sequelize.sync({ force: false }).then(function() {
 	Quiz.count().then(function(count) {
 		// Si la tabla está vacia la inicializamos con una pregunta
 		if(count === 0) {

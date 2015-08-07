@@ -17,3 +17,24 @@ nav span             { margin: 0px 10px 0px 0px;
 
 .quiz_img 			 { height: 150px; float: left;}
 .quiz_vid 			 { height: 240px; clear: left; display: block;}
+
+
+div.stastistics {
+	width: 100%;
+	margin-left: auto;
+	text-align: center;
+}
+
+table.stastistics {
+	border-collapse: collapse;
+	display: inline-block;
+}
+
+table.stastistics th, table.stastistics td  {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+table.stastistics th {
+	background-color: #999;
+}
