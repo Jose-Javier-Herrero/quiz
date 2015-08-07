@@ -12,6 +12,13 @@ var routes = require('./routes/index');
 
 var app = express();
 
+// Globals constants
+app.locals.SESSION_TIMEOUT = 120000;
+app.locals.DEFAULT_TIME = 0;
+
+// Global variables
+app.locals.lastHtmlTransactionTime = app.locals.DEFAULT_TIME;
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -36,6 +43,26 @@ app.use(function(req, res, next) {
 	//Hacer visible la session en las vistas locales
 	res.locals.session = req.session;
     next();
+});
+
+// Middleware de auto-logout
+app.use(function(req, res, next) {
+	// Primeramente guardamos el long con la fecha y hora actuales
+	var localTime = (new Date()).getTime();
+
+	// Seguidamente comparamos la hora local con la hora préviamente guardada (solo si esta se ha guardado)
+	// para comprovar si han vencido los 2 min, y si es así, llamaremos al logout
+	if(app.locals.lastHtmlTransactionTime && Math.abs(localTime - app.locals.lastHtmlTransactionTime) >= app.locals.SESSION_TIMEOUT){
+		delete req.session.user;
+		app.locals.lastHtmlTransactionTime = app.locals.DEFAULT_TIME;
+	}
+	
+	// Actualizamos la fecha de ultima transaction solo si el usuario está logueado
+	if(req.session.user){
+		app.locals.lastHtmlTransactionTime = (new Date()).getTime();
+	}
+	
+	next();
 });
 
 // Definir el fichero de rutas
